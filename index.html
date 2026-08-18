@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonExpertAutomobile OS</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#17202a;
+}
+header{
+  background:#111827;
+  color:white;
+  padding:22px;
+}
+header h1{margin:0;font-size:24px}
+header p{margin:6px 0 0;color:#b9c2ce}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.card{
+  background:white;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+.card h2{margin-top:0}
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  font-size:15px;
+  cursor:pointer;
+  background:#166534;
+  color:white;
+}
+button.secondary{
+  background:#e5e7eb;
+  color:#111827;
+}
+input,select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:9px;
+  margin:7px 0 15px;
+}
+label{
+  font-weight:bold;
+  font-size:14px;
+}
+.section{margin-top:20px}
+.status{
+  padding:12px;
+  border-radius:10px;
+  background:#ecfdf5;
+  color:#166534;
+  margin-top:12px;
+}
+.anomaly{
+  padding:14px;
+  border-left:5px solid #dc2626;
+  background:#fef2f2;
+  margin-top:10px;
+  border-radius:8px;
+}
+.hidden{display:none}
+nav{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin-bottom:20px;
+}
+nav button{white-space:nowrap}
+.small{color:#6b7280;font-size:13px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🚗 MonExpertAutomobile OS</h1>
+  <p>Plateforme professionnelle d'inspection automobile avant achat</p>
+</header>
+
+<div class="container">
+
+<nav>
+  <button onclick="show('dashboard')">Tableau de bord</button>
+  <button onclick="show('client')">Nouveau client</button>
+  <button onclick="show('vehicle')">Véhicule</button>
+  <button onclick="show('inspection')">Inspection</button>
+  <button onclick="show('documents')">Documents & IA</button>
+</nav>
+
+<!-- TABLEAU DE BORD -->
+
+<section id="dashboard">
+
+<div class="grid">
+
+<div class="card">
+<h2>👤 Clients</h2>
+<p>Gérer les clients et leurs coordonnées.</p>
+<button onclick="show('client')">Nouveau client</button>
+</div>
+
+<div class="card">
+<h2>🚘 Véhicules</h2>
+<p>Enregistrer les véhicules inspectés.</p>
+<button onclick="show('vehicle')">Ajouter un véhicule</button>
+</div>
+
+<div class="card">
+<h2>🔍 Inspections</h2>
+<p>Réaliser une inspection complète avant achat.</p>
+<button onclick="show('inspection')">Nouvelle inspection</button>
+</div>
+
+<div class="card">
+<h2>🤖 IA automobile</h2>
+<p>Analyser les documents et rechercher les incohérences.</p>
+<button onclick="show('documents')">Analyser les documents</button>
+</div>
+
+</div>
+
+<div class="card section">
+<h2>Architecture MonExpertAutomobile OS</h2>
+<p>Clients → Véhicules → Inspections → Missions → Rapport final</p>
+<p class="small">
+Les documents seront ensuite croisés automatiquement avec les informations
+du véhicule et les données disponibles dans les rapports officiels.
+</p>
+</div>
+
+</section>
+
+
+<!-- CLIENT -->
+
+<section id="client" class="hidden">
+
+<div class="card">
+<h2>👤 Nouveau client</h2>
+
+<label>Prénom</label>
+<input id="prenom" placeholder="Prénom">
+
+<label>Nom</label>
+<input id="nom" placeholder="Nom">
+
+<label>Téléphone</label>
+<input id="telephone" placeholder="06...">
+
+<label>Email</label>
+<input id="email" type="email" placeholder="client@email.com">
+
+<button onclick="saveClient()">Enregistrer le client</button>
+
+<div id="clientStatus"></div>
+</div>
+
+</section>
+
+
+<!-- VEHICULE -->
+
+<section id="vehicle" class="hidden">
+
+<div class="card">
+<h2>🚘 Nouveau véhicule</h2>
+
+<label>Immatriculation</label>
+<input id="immatriculation" placeholder="AA-123-AA">
+
+<label>VIN</label>
+<input id="vin" placeholder="Numéro VIN">
+
+<label>Marque</label>
+<input id="marque" placeholder="BMW, Renault, Peugeot...">
+
+<label>Modèle</label>
+<input id="modele" placeholder="Modèle">
+
+<label>Année</label>
+<input id="annee" type="number">
+
+<label>Kilométrage</label>
+<input id="kilometrage" type="number">
+
+<label>Carburant</label>
+<select id="carburant">
+<option>Diesel</option>
+<option>Essence</option>
+<option>Hybride</option>
+<option>Électrique</option>
+</select>
+
+<button onclick="saveVehicle()">Enregistrer le véhicule</button>
+
+<div id="vehicleStatus"></div>
+</div>
+
+</section>
+
+
+<!-- INSPECTION -->
+
+<section id="inspection" class="hidden">
+
+<div class="card">
+<h2>🔍 Inspection automobile</h2>
+
+<label>État général</label>
+<select id="etat">
+<option>Très bon</option>
+<option>Bon</option>
+<option>Moyen</option>
+<option>Mauvais</option>
+</select>
+
+<label>Essai routier</label>
+<select id="essai">
+<option>Conforme</option>
+<option>Anomalie détectée</option>
+<option>Non réalisé</option>
+</select>
+
+<label>Moteur</label>
+<select id="moteur">
+<option>Conforme</option>
+<option>Anomalie détectée</option>
+</select>
+
+<label>Boîte de vitesses</label>
+<select id="boite">
+<option>Conforme</option>
+<option>Anomalie détectée</option>
+</select>
+
+<label>Freinage</label>
+<select id="freins">
+<option>Conforme</option>
+<option>Anomalie détectée</option>
+</select>
+
+<button onclick="runInspection()">Terminer l'inspection</button>
+
+<div id="inspectionResult"></div>
+
+</div>
+
+</section>
+
+
+<!-- DOCUMENTS / IA -->
+
+<section id="documents" class="hidden">
+
+<div class="card">
+
+<h2>🤖 Analyse documentaire intelligente</h2>
+
+<p>
+Photographiez ou importez les documents présents lors de l'inspection.
+</p>
+
+<label>Certificat d'immatriculation</label>
+<input type="file" accept="image/*,.pdf" capture="environment">
+
+<label>Contrôle technique</label>
+<input type="file" accept="image/*,.pdf" capture="environment">
+
+<label>Factures d'entretien et réparations</label>
+<input type="file" accept="image/*,.pdf" multiple capture="environment">
+
+<label>Carnet d'entretien</label>
+<input type="file" accept="image/*,.pdf" capture="environment">
+
+<label>Rapport HistoVec</label>
+<input type="file" accept="image/*,.pdf" capture="environment">
+
+<button onclick="startAI()">Lancer l'analyse IA</button>
+
+<div id="aiResult"></div>
+
+</div>
+
+<div class="card section">
+
+<h2>🔎 Ce que l'IA devra contrôler</h2>
+
+<ul>
+<li>Cohérence de l'immatriculation</li>
+<li>Cohérence du VIN</li>
+<li>Marque et modèle</li>
+<li>Dates des documents</li>
+<li>Kilométrage</li>
+<li>Historique des entretiens</li>
+<li>Réparations importantes</li>
+<li>Contrôles techniques</li>
+<li>Évolution anormale du kilométrage</li>
+<li>Incohérences entre factures et carnet d'entretien</li>
+<li>Incohérences avec le rapport HistoVec</li>
+<li>Alertes sur les anomalies détectées</li>
+</ul>
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+function show(page){
+
+document.querySelectorAll("section").forEach(
+s=>s.classList.add("hidden")
+);
+
+document.getElementById(page).classList.remove("hidden");
+
+window.scrollTo(0,0);
+}
+
+
+function saveClient(){
+
+document.getElementById("clientStatus").innerHTML=
+'<div class="status">✅ Client prêt à être enregistré dans Supabase.</div>';
+
+}
+
+
+function saveVehicle(){
+
+document.getElementById("vehicleStatus").innerHTML=
+'<div class="status">✅ Véhicule prêt à être enregistré dans Supabase.</div>';
+
+}
+
+
+function runInspection(){
+
+let anomalies=[];
+
+if(document.getElementById("moteur").value==="Anomalie détectée")
+anomalies.push("Anomalie moteur détectée.");
+
+if(document.getElementById("boite").value==="Anomalie détectée")
+anomalies.push("Anomalie de boîte de vitesses détectée.");
+
+if(document.getElementById("freins").value==="Anomalie détectée")
+anomalies.push("Anomalie de freinage détectée.");
+
+let html="<h3>Résultat de l'inspection</h3>";
+
+if(anomalies.length===0){
+
+html+='<div class="status">✅ Aucune anomalie saisie lors de cette inspection.</div>';
+
+}else{
+
+anomalies.forEach(a=>{
+html+='<div class="anomaly">⚠️ '+a+'</div>';
+});
+
+}
+
+document.getElementById("inspectionResult").innerHTML=html;
+
+}
+
+
+function startAI(){
+
+document.getElementById("aiResult").innerHTML=
+'<div class="status">🤖 Documents reçus. Le moteur IA pourra ensuite extraire les données et les comparer automatiquement.</div>';
+
+}
+
+</script>
+
+</body>
+</html>
