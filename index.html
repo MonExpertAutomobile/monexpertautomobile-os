@@ -3,11 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>MonExpertAutomobile OS</title>
 
@@ -16,473 +12,1790 @@
 
 <body>
 
-  <header>
-    <h1>🚗 MonExpertAutomobile OS</h1>
-    <p>
-      Plateforme professionnelle d'inspection automobile avant achat
-    </p>
-  </header>
+  <!-- =====================================================
+       APPLICATION
+  ====================================================== -->
 
-  <div class="container">
+  <div id="app">
 
-    <nav>
-      <button onclick="show('dashboard')">
-        Tableau de bord
-      </button>
+    <!-- ===================================================
+         SIDEBAR
+    ==================================================== -->
 
-      <button onclick="show('client')">
-        Nouveau client
-      </button>
+    <aside id="sidebar">
 
-      <button onclick="show('vehicle')">
-        Véhicule
-      </button>
+      <div class="brand">
+        <div class="brand-logo">
+          ME<span>AQ</span>
+        </div>
 
-      <button onclick="show('inspection')">
-        Inspection
-      </button>
-
-      <button onclick="show('documents')">
-        Documents & IA
-      </button>
-    </nav>
+        <div class="brand-text">
+          <strong>MONEXPERTAUTOMOBILE</strong>
+          <small>INSPECTION & ACCOMPAGNEMENT</small>
+        </div>
+      </div>
 
 
-    <!-- ================================
-         TABLEAU DE BORD
-    ================================= -->
+      <nav class="main-navigation">
 
-    <section id="dashboard">
+        <button class="nav-item active"
+                data-page="dashboard"
+                onclick="show('dashboard')">
+          <span>⌂</span>
+          <strong>Tableau de bord</strong>
+        </button>
 
-      <div class="grid">
+        <button class="nav-item"
+                data-page="missions"
+                onclick="show('missions')">
+          <span>▣</span>
+          <strong>Missions</strong>
+        </button>
 
-        <div class="card">
-          <h2>👤 Clients</h2>
+        <button class="nav-item"
+                data-page="calendar"
+                onclick="show('calendar')">
+          <span>▦</span>
+          <strong>Calendrier</strong>
+        </button>
 
-          <p>
-            Gérer les clients et leurs coordonnées.
+        <button class="nav-item"
+                data-page="inspectors"
+                onclick="show('inspectors')">
+          <span>♙</span>
+          <strong>Inspecteurs</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="clients"
+                onclick="show('clients')">
+          <span>♙</span>
+          <strong>Clients</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="vehicles"
+                onclick="show('vehicles')">
+          <span>🚗</span>
+          <strong>Véhicules</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="reports"
+                onclick="show('reports')">
+          <span>▤</span>
+          <strong>Rapports</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="ai"
+                onclick="show('ai')">
+          <span>✦</span>
+          <strong>Analyse IA</strong>
+          <em>BETA</em>
+        </button>
+
+        <button class="nav-item"
+                data-page="validations"
+                onclick="show('validations')">
+          <span>✓</span>
+          <strong>Validations</strong>
+          <b class="notification-count">0</b>
+        </button>
+
+        <button class="nav-item"
+                data-page="reviews"
+                onclick="show('reviews')">
+          <span>★</span>
+          <strong>Avis clients</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="billing"
+                onclick="show('billing')">
+          <span>€</span>
+          <strong>Facturation</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="statistics"
+                onclick="show('statistics')">
+          <span>▥</span>
+          <strong>Statistiques</strong>
+        </button>
+
+        <button class="nav-item"
+                data-page="settings"
+                onclick="show('settings')">
+          <span>⚙</span>
+          <strong>Paramètres</strong>
+        </button>
+
+      </nav>
+
+
+      <!-- SERVICE PREMIUM -->
+
+      <div class="premium-card">
+
+        <small>SERVICE PREMIUM</small>
+
+        <strong>MEA</strong>
+
+        <p>
+          Inspection & accompagnement
+        </p>
+
+        <span>
+          Assistance professionnelle
+        </span>
+
+        <button onclick="show('support')">
+          Assistance rapide
+        </button>
+
+      </div>
+
+
+      <!-- UTILISATEUR -->
+
+      <div class="user-card">
+
+        <div class="avatar">
+          M
+        </div>
+
+        <div>
+          <strong>Administrateur</strong>
+          <small>
+            <span class="online"></span>
+            En ligne
+          </small>
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- ===================================================
+         CONTENU PRINCIPAL
+    ==================================================== -->
+
+    <main id="main-content">
+
+
+      <!-- =================================================
+           TOPBAR
+      ================================================== -->
+
+      <header id="topbar">
+
+        <div class="mobile-menu">
+          ☰
+        </div>
+
+        <div class="page-title">
+
+          <h1 id="pageTitle">
+            Tableau de bord
+          </h1>
+
+          <p id="pageSubtitle">
+            Vue d'ensemble de votre activité
           </p>
 
-          <button onclick="show('client')">
-            Nouveau client
-          </button>
         </div>
 
 
-        <div class="card">
-          <h2>🚘 Véhicules</h2>
+        <div class="topbar-actions">
+
+          <button class="icon-button"
+                  onclick="show('notifications')"
+                  aria-label="Notifications">
+            🔔
+            <span class="notification-dot"></span>
+          </button>
+
+          <button class="primary-button"
+                  onclick="show('newMission')">
+            + Nouvelle mission
+          </button>
+
+          <button class="profile-button">
+            <span class="avatar">M</span>
+            <span>Administrateur</span>
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <!-- =================================================
+           DASHBOARD
+      ================================================== -->
+
+      <section id="dashboard" class="page-section">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Tableau de bord</h2>
+            <p>
+              Pilotez l'ensemble de votre activité MonExpertAutomobile.
+            </p>
+          </div>
+
+          <div class="header-actions">
+
+            <button class="secondary-button">
+              Aujourd'hui
+            </button>
+
+            <button class="primary-button"
+                    onclick="show('newMission')">
+              + Nouvelle mission
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- KPI -->
+
+        <div class="stats-grid">
+
+          <article class="stat-card">
+
+            <div class="stat-icon">
+              €
+            </div>
+
+            <div>
+              <span>Chiffre d'affaires</span>
+              <strong id="dashboardRevenue">—</strong>
+              <small>
+                Données disponibles après connexion comptable
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <div class="stat-icon">
+              ▣
+            </div>
+
+            <div>
+              <span>Missions</span>
+              <strong id="dashboardMissions">—</strong>
+              <small>
+                Aucune donnée fictive
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <div class="stat-icon">
+              ✓
+            </div>
+
+            <div>
+              <span>Rapports validés</span>
+              <strong id="dashboardReports">—</strong>
+              <small>
+                En attente des premières missions
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <div class="stat-icon">
+              🚗
+            </div>
+
+            <div>
+              <span>Missions en cours</span>
+              <strong id="dashboardActive">—</strong>
+              <small>
+                Suivi en temps réel
+              </small>
+            </div>
+
+          </article>
+
+
+          <article class="stat-card">
+
+            <div class="stat-icon">
+              ★
+            </div>
+
+            <div>
+              <span>Avis moyen</span>
+              <strong id="dashboardRating">—</strong>
+              <small>
+                Aucun avis pour le moment
+              </small>
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- ACTIVITÉ -->
+
+        <div class="dashboard-grid">
+
+          <article class="panel large-panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Activité globale</h3>
+                <p>
+                  Évolution de votre activité
+                </p>
+              </div>
+
+              <select>
+                <option>30 derniers jours</option>
+                <option>7 derniers jours</option>
+                <option>3 derniers mois</option>
+                <option>Cette année</option>
+              </select>
+
+            </div>
+
+            <div class="chart-placeholder">
+
+              <div class="empty-state">
+
+                <div class="empty-icon">
+                  ▥
+                </div>
+
+                <h3>
+                  Votre activité apparaîtra ici
+                </h3>
+
+                <p>
+                  Les statistiques seront calculées
+                  automatiquement à partir de vos missions réelles.
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- MISSIONS -->
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Missions à suivre</h3>
+                <p>
+                  Vos prochaines missions
+                </p>
+              </div>
+
+              <button class="text-button"
+                      onclick="show('missions')">
+                Voir tout →
+              </button>
+
+            </div>
+
+            <div id="dashboardMissionList">
+
+              <div class="empty-state small">
+
+                <div class="empty-icon">
+                  ▣
+                </div>
+
+                <p>
+                  Aucune mission actuellement.
+                </p>
+
+                <button class="primary-button"
+                        onclick="show('newMission')">
+                  Créer une mission
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- BAS DU DASHBOARD -->
+
+        <div class="dashboard-grid">
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <h3>Inspecteurs</h3>
+
+              <button class="text-button"
+                      onclick="show('inspectors')">
+                Gérer →
+              </button>
+
+            </div>
+
+            <div class="empty-state small">
+
+              <div class="empty-icon">
+                ♙
+              </div>
+
+              <p>
+                Aucun inspecteur enregistré.
+              </p>
+
+              <button class="secondary-button"
+                      onclick="show('inspectors')">
+                Ajouter un inspecteur
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <h3>Rapports à valider</h3>
+
+              <button class="text-button"
+                      onclick="show('validations')">
+                Voir tout →
+              </button>
+
+            </div>
+
+            <div class="empty-state small">
+
+              <div class="empty-icon">
+                ✓
+              </div>
+
+              <p>
+                Aucun rapport à valider.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="panel">
+
+            <div class="panel-header">
+
+              <h3>Alertes importantes</h3>
+
+            </div>
+
+            <div class="empty-state small">
+
+              <div class="empty-icon">
+                !
+              </div>
+
+              <p>
+                Aucune alerte.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           MISSIONS
+      ================================================== -->
+
+      <section id="missions" class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Missions</h2>
+            <p>
+              Gérez toutes vos inspections automobiles.
+            </p>
+          </div>
+
+          <button class="primary-button"
+                  onclick="show('newMission')">
+            + Nouvelle mission
+          </button>
+
+        </div>
+
+
+        <div class="toolbar">
+
+          <input
+            type="search"
+            id="missionSearch"
+            placeholder="Rechercher une mission..."
+          >
+
+          <select id="missionStatusFilter">
+
+            <option value="all">
+              Tous les statuts
+            </option>
+
+            <option value="pending">
+              À planifier
+            </option>
+
+            <option value="active">
+              En cours
+            </option>
+
+            <option value="report">
+              Rapport
+            </option>
+
+            <option value="completed">
+              Terminée
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div id="missionsList"
+             class="data-list">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ▣
+            </div>
+
+            <h3>
+              Aucune mission
+            </h3>
+
+            <p>
+              Créez votre première mission pour commencer.
+            </p>
+
+            <button class="primary-button"
+                    onclick="show('newMission')">
+              Créer une mission
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           NOUVELLE MISSION
+      ================================================== -->
+
+      <section id="newMission"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Nouvelle mission</h2>
+            <p>
+              Créez une mission d'inspection automobile.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="form-layout">
+
+          <article class="panel">
+
+            <h3>Client</h3>
+
+            <label>
+              Client
+            </label>
+
+            <select id="missionClient">
+
+              <option value="">
+                Sélectionner un client
+              </option>
+
+            </select>
+
+            <button class="secondary-button"
+                    onclick="show('clients')">
+              + Nouveau client
+            </button>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>Véhicule</h3>
+
+            <label>
+              Véhicule
+            </label>
+
+            <select id="missionVehicle">
+
+              <option value="">
+                Sélectionner un véhicule
+              </option>
+
+            </select>
+
+            <button class="secondary-button"
+                    onclick="show('vehicles')">
+              + Ajouter un véhicule
+            </button>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>Prestation</h3>
+
+            <label>
+              Type d'inspection
+            </label>
+
+            <select id="missionType">
+
+              <option>
+                Inspection avant achat
+              </option>
+
+              <option>
+                Expertise après achat
+              </option>
+
+              <option>
+                Expertise avant vente
+              </option>
+
+              <option>
+                Inspection mécanique
+              </option>
+
+              <option>
+                Diagnostic approfondi
+              </option>
+
+            </select>
+
+
+            <label>
+              Formule
+            </label>
+
+            <select id="missionPlan">
+
+              <option>
+                Standard
+              </option>
+
+              <option>
+                Premium
+              </option>
+
+              <option>
+                Premium +
+              </option>
+
+            </select>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>Rendez-vous</h3>
+
+            <label>
+              Date
+            </label>
+
+            <input
+              type="date"
+              id="missionDate"
+            >
+
+            <label>
+              Heure
+            </label>
+
+            <input
+              type="time"
+              id="missionTime"
+            >
+
+            <label>
+              Lieu
+            </label>
+
+            <input
+              type="text"
+              id="missionLocation"
+              placeholder="Adresse du rendez-vous"
+            >
+
+          </article>
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button class="secondary-button"
+                  onclick="show('missions')">
+            Annuler
+          </button>
+
+          <button class="primary-button"
+                  onclick="createMission()">
+            Créer la mission
+          </button>
+
+        </div>
+
+        <div id="missionStatus"></div>
+
+      </section>
+
+
+      <!-- =================================================
+           CALENDRIER
+      ================================================== -->
+
+      <section id="calendar"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Calendrier</h2>
+            <p>
+              Planification des missions et disponibilités.
+            </p>
+          </div>
+
+          <button class="primary-button"
+                  onclick="show('newMission')">
+            + Nouvelle mission
+          </button>
+
+        </div>
+
+        <article class="panel calendar-panel">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ▦
+            </div>
+
+            <h3>
+              Calendrier prêt à être connecté
+            </h3>
+
+            <p>
+              Les rendez-vous et disponibilités des inspecteurs
+              seront affichés ici.
+            </p>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           INSPECTEURS
+      ================================================== -->
+
+      <section id="inspectors"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Inspecteurs</h2>
+            <p>
+              Réseau d'experts automobiles.
+            </p>
+          </div>
+
+          <button class="primary-button">
+            + Ajouter un inspecteur
+          </button>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ♙
+          </div>
+
+          <h3>
+            Aucun inspecteur enregistré
+          </h3>
 
           <p>
-            Enregistrer les véhicules inspectés.
+            Votre réseau d'inspecteurs apparaîtra ici.
           </p>
 
-          <button onclick="show('vehicle')">
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           CLIENTS
+      ================================================== -->
+
+      <section id="clients"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Clients</h2>
+            <p>
+              Gestion de votre portefeuille clients.
+            </p>
+          </div>
+
+          <button class="primary-button"
+                  onclick="show('newClient')">
+            + Nouveau client
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+
+          <input
+            type="search"
+            placeholder="Rechercher un client..."
+          >
+
+        </div>
+
+        <div id="clientsList"
+             class="empty-state">
+
+          <div class="empty-icon">
+            ♙
+          </div>
+
+          <h3>
+            Aucun client
+          </h3>
+
+          <p>
+            Votre base clients est actuellement vide.
+          </p>
+
+          <button class="primary-button"
+                  onclick="show('newClient')">
+            Créer un client
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           NOUVEAU CLIENT
+      ================================================== -->
+
+      <section id="newClient"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Nouveau client</h2>
+            <p>
+              Créez une fiche client.
+            </p>
+          </div>
+
+        </div>
+
+
+        <article class="panel form-panel">
+
+          <label>
+            Prénom
+          </label>
+
+          <input
+            id="prenom"
+            type="text"
+            placeholder="Prénom"
+          >
+
+
+          <label>
+            Nom
+          </label>
+
+          <input
+            id="nom"
+            type="text"
+            placeholder="Nom"
+          >
+
+
+          <label>
+            Téléphone
+          </label>
+
+          <input
+            id="telephone"
+            type="tel"
+            placeholder="Téléphone"
+          >
+
+
+          <label>
+            Email
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="email@client.fr"
+          >
+
+
+          <label>
+            Adresse
+          </label>
+
+          <input
+            id="adresseClient"
+            type="text"
+            placeholder="Adresse"
+          >
+
+
+          <div class="form-actions">
+
+            <button class="secondary-button"
+                    onclick="show('clients')">
+              Annuler
+            </button>
+
+            <button class="primary-button"
+                    onclick="saveClient()">
+              Enregistrer le client
+            </button>
+
+          </div>
+
+          <div id="clientStatus"></div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           VEHICULES
+      ================================================== -->
+
+      <section id="vehicles"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Véhicules</h2>
+            <p>
+              Base de données des véhicules inspectés.
+            </p>
+          </div>
+
+          <button class="primary-button"
+                  onclick="show('newVehicle')">
+            + Nouveau véhicule
+          </button>
+
+        </div>
+
+        <div class="toolbar">
+
+          <input
+            type="search"
+            placeholder="Immatriculation, VIN, marque..."
+          >
+
+        </div>
+
+        <div id="vehiclesList"
+             class="empty-state">
+
+          <div class="empty-icon">
+            🚗
+          </div>
+
+          <h3>
+            Aucun véhicule
+          </h3>
+
+          <p>
+            Les véhicules seront enregistrés automatiquement
+            avec leurs missions.
+          </p>
+
+          <button class="primary-button"
+                  onclick="show('newVehicle')">
             Ajouter un véhicule
           </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           NOUVEAU VEHICULE
+      ================================================== -->
+
+      <section id="newVehicle"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Nouveau véhicule</h2>
+            <p>
+              Créez une fiche véhicule.
+            </p>
+          </div>
+
         </div>
 
 
-        <div class="card">
-          <h2>🔍 Inspections</h2>
+        <article class="panel form-panel">
 
-          <p>
-            Réaliser une inspection complète avant achat.
-          </p>
+          <label>
+            Immatriculation
+          </label>
 
-          <button onclick="show('inspection')">
-            Nouvelle inspection
-          </button>
-        </div>
+          <input
+            id="immatriculation"
+            type="text"
+            placeholder="AA-123-AA"
+          >
 
 
-        <div class="card">
-          <h2>🤖 IA automobile</h2>
+          <label>
+            VIN
+          </label>
 
-          <p>
-            Analyser les documents et rechercher les incohérences.
-          </p>
+          <input
+            id="vin"
+            type="text"
+            placeholder="17 caractères"
+          >
 
-          <button onclick="show('documents')">
-            Analyser les documents
-          </button>
-        </div>
 
-      </div>
+          <label>
+            Marque
+          </label>
 
+          <input
+            id="marque"
+            type="text"
+            placeholder="Marque"
+          >
 
-      <div class="card section">
 
-        <h2>
-          Architecture MonExpertAutomobile OS
-        </h2>
+          <label>
+            Modèle
+          </label>
 
-        <p>
-          Clients → Véhicules → Inspections → Missions → Rapport final
-        </p>
+          <input
+            id="modele"
+            type="text"
+            placeholder="Modèle"
+          >
 
-        <p class="small">
-          Les documents seront ensuite croisés automatiquement
-          avec les informations du véhicule et les données
-          disponibles dans les rapports officiels.
-        </p>
 
-      </div>
+          <label>
+            Année
+          </label>
 
-    </section>
+          <input
+            id="annee"
+            type="number"
+            placeholder="Année"
+          >
 
 
-    <!-- ================================
-         CLIENT
-    ================================= -->
-
-    <section id="client" class="hidden">
-
-      <div class="card">
-
-        <h2>👤 Nouveau client</h2>
-
-        <label>Prénom</label>
-        <input
-          id="prenom"
-          placeholder="Prénom"
-        >
-
-        <label>Nom</label>
-        <input
-          id="nom"
-          placeholder="Nom"
-        >
-
-        <label>Téléphone</label>
-        <input
-          id="telephone"
-          placeholder="06..."
-        >
-
-        <label>Email</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="client@email.com"
-        >
-
-        <button onclick="saveClient()">
-          Enregistrer le client
-        </button>
-
-        <div id="clientStatus"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================
-         VEHICULE
-    ================================= -->
-
-    <section id="vehicle" class="hidden">
-
-      <div class="card">
-
-        <h2>🚘 Nouveau véhicule</h2>
-
-        <label>Immatriculation</label>
-
-        <input
-          id="immatriculation"
-          placeholder="AA-123-AA"
-        >
-
-
-        <label>VIN</label>
-
-        <input
-          id="vin"
-          placeholder="Numéro VIN"
-        >
-
-
-        <label>Marque</label>
-
-        <input
-          id="marque"
-          placeholder="BMW, Renault, Peugeot..."
-        >
-
-
-        <label>Modèle</label>
-
-        <input
-          id="modele"
-          placeholder="Modèle"
-        >
-
-
-        <label>Année</label>
-
-        <input
-          id="annee"
-          type="number"
-        >
-
-
-        <label>Kilométrage</label>
-
-        <input
-          id="kilometrage"
-          type="number"
-        >
-
-
-        <label>Carburant</label>
-
-        <select id="carburant">
-
-          <option>Diesel</option>
-          <option>Essence</option>
-          <option>Hybride</option>
-          <option>Électrique</option>
-
-        </select>
-
-
-        <button onclick="saveVehicle()">
-          Enregistrer le véhicule
-        </button>
-
-        <div id="vehicleStatus"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================
-         INSPECTION
-    ================================= -->
-
-    <section id="inspection" class="hidden">
-
-      <div class="card">
-
-        <h2>🔍 Inspection automobile</h2>
-
-
-        <label>État général</label>
-
-        <select id="etat">
-
-          <option>Très bon</option>
-          <option>Bon</option>
-          <option>Moyen</option>
-          <option>Mauvais</option>
-
-        </select>
-
-
-        <label>Essai routier</label>
-
-        <select id="essai">
-
-          <option>Conforme</option>
-          <option>Anomalie détectée</option>
-          <option>Non réalisé</option>
-
-        </select>
-
-
-        <label>Moteur</label>
-
-        <select id="moteur">
-
-          <option>Conforme</option>
-          <option>Anomalie détectée</option>
-
-        </select>
-
-
-        <label>Boîte de vitesses</label>
-
-        <select id="boite">
-
-          <option>Conforme</option>
-          <option>Anomalie détectée</option>
-
-        </select>
-
-
-        <label>Freinage</label>
-
-        <select id="freins">
-
-          <option>Conforme</option>
-          <option>Anomalie détectée</option>
-
-        </select>
-
-
-        <button onclick="runInspection()">
-          Terminer l'inspection
-        </button>
-
-        <div id="inspectionResult"></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================================
-         DOCUMENTS / IA
-    ================================= -->
-
-    <section id="documents" class="hidden">
-
-      <div class="card">
-
-        <h2>
-          🤖 Analyse documentaire intelligente
-        </h2>
-
-        <p>
-          Photographiez ou importez les documents
-          présents lors de l'inspection.
-        </p>
-
-
-        <label>
-          Certificat d'immatriculation
-        </label>
-
-        <input
-          type="file"
-          accept="image/*,.pdf"
-          capture="environment"
-        >
-
-
-        <label>
-          Contrôle technique
-        </label>
-
-        <input
-          type="file"
-          accept="image/*,.pdf"
-          capture="environment"
-        >
-
-
-        <label>
-          Factures d'entretien et réparations
-        </label>
-
-        <input
-          type="file"
-          accept="image/*,.pdf"
-          multiple
-          capture="environment"
-        >
-
-
-        <label>
-          Carnet d'entretien
-        </label>
-
-        <input
-          type="file"
-          accept="image/*,.pdf"
-          capture="environment"
-        >
-
-
-        <label>
-          Rapport HistoVec
-        </label>
-
-        <input
-          type="file"
-          accept="image/*,.pdf"
-          capture="environment"
-        >
-
-
-        <button onclick="startAI()">
-          Lancer l'analyse IA
-        </button>
-
-        <div id="aiResult"></div>
-
-      </div>
-
-
-      <div class="card section">
-
-        <h2>
-          🔎 Ce que l'IA devra contrôler
-        </h2>
-
-        <ul>
-
-          <li>
-            Cohérence de l'immatriculation
-          </li>
-
-          <li>
-            Cohérence du VIN
-          </li>
-
-          <li>
-            Marque et modèle
-          </li>
-
-          <li>
-            Dates des documents
-          </li>
-
-          <li>
+          <label>
             Kilométrage
-          </li>
+          </label>
 
-          <li>
-            Historique des entretiens
-          </li>
+          <input
+            id="kilometrage"
+            type="number"
+            placeholder="Kilométrage"
+          >
 
-          <li>
-            Réparations importantes
-          </li>
 
-          <li>
-            Contrôles techniques
-          </li>
+          <label>
+            Carburant
+          </label>
 
-          <li>
-            Évolution anormale du kilométrage
-          </li>
+          <select id="carburant">
 
-          <li>
-            Incohérences entre factures
-            et carnet d'entretien
-          </li>
+            <option>
+              Diesel
+            </option>
 
-          <li>
-            Incohérences avec le rapport HistoVec
-          </li>
+            <option>
+              Essence
+            </option>
 
-          <li>
-            Alertes sur les anomalies détectées
-          </li>
+            <option>
+              Hybride
+            </option>
 
-        </ul>
+            <option>
+              Électrique
+            </option>
 
-      </div>
+            <option>
+              GPL
+            </option>
 
-    </section>
+          </select>
+
+
+          <div class="form-actions">
+
+            <button class="secondary-button"
+                    onclick="show('vehicles')">
+              Annuler
+            </button>
+
+            <button class="primary-button"
+                    onclick="saveVehicle()">
+              Enregistrer le véhicule
+            </button>
+
+          </div>
+
+          <div id="vehicleStatus"></div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           RAPPORTS
+      ================================================== -->
+
+      <section id="reports"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Rapports</h2>
+            <p>
+              Rapports d'inspection et expertises.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ▤
+          </div>
+
+          <h3>
+            Aucun rapport
+          </h3>
+
+          <p>
+            Les rapports générés apparaîtront ici.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           ANALYSE IA
+      ================================================== -->
+
+      <section id="ai"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Analyse documentaire IA</h2>
+            <p>
+              Détection automatique des incohérences
+              dans les documents automobiles.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <article class="panel">
+
+            <h3>
+              Documents à analyser
+            </h3>
+
+            <label>
+              Carte grise
+            </label>
+
+            <input
+              id="documentCarteGrise"
+              type="file"
+              accept="image/*,.pdf"
+            >
+
+
+            <label>
+              Contrôle technique
+            </label>
+
+            <input
+              id="documentCT"
+              type="file"
+              accept="image/*,.pdf"
+            >
+
+
+            <label>
+              Factures
+            </label>
+
+            <input
+              id="documentFactures"
+              type="file"
+              accept="image/*,.pdf"
+              multiple
+            >
+
+
+            <label>
+              Carnet d'entretien
+            </label>
+
+            <input
+              id="documentCarnet"
+              type="file"
+              accept="image/*,.pdf"
+            >
+
+
+            <label>
+              Historique véhicule
+            </label>
+
+            <input
+              id="documentHistorique"
+              type="file"
+              accept="image/*,.pdf"
+            >
+
+
+            <button class="primary-button"
+                    onclick="startAI()">
+              ✦ Lancer l'analyse IA
+            </button>
+
+            <div id="aiResult"></div>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>
+              Contrôles automatisés
+            </h3>
+
+            <ul class="feature-list">
+
+              <li>
+                ✓ Identité du véhicule
+              </li>
+
+              <li>
+                ✓ Immatriculation
+              </li>
+
+              <li>
+                ✓ VIN
+              </li>
+
+              <li>
+                ✓ Marque et modèle
+              </li>
+
+              <li>
+                ✓ Dates des documents
+              </li>
+
+              <li>
+                ✓ Cohérence kilométrique
+              </li>
+
+              <li>
+                ✓ Historique d'entretien
+              </li>
+
+              <li>
+                ✓ Réparations importantes
+              </li>
+
+              <li>
+                ✓ Contrôles techniques
+              </li>
+
+              <li>
+                ✓ Incohérences entre documents
+              </li>
+
+              <li>
+                ✓ Détection de points d'attention
+              </li>
+
+              <li>
+                ✓ Génération d'une synthèse
+              </li>
+
+            </ul>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           VALIDATIONS
+      ================================================== -->
+
+      <section id="validations"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Validations</h2>
+            <p>
+              Contrôlez les rapports avant leur envoi au client.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ✓
+          </div>
+
+          <h3>
+            Aucun rapport à valider
+          </h3>
+
+          <p>
+            Les rapports terminés apparaîtront ici
+            avant leur envoi.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           AVIS
+      ================================================== -->
+
+      <section id="reviews"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Avis clients</h2>
+            <p>
+              Suivez la satisfaction de vos clients.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ★
+          </div>
+
+          <h3>
+            Aucun avis
+          </h3>
+
+          <p>
+            Les avis clients apparaîtront après les premières missions.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           FACTURATION
+      ================================================== -->
+
+      <section id="billing"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Facturation</h2>
+            <p>
+              Paiements, factures et suivi financier.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+          <article class="stat-card">
+            <span>Facturation</span>
+            <strong>—</strong>
+            <small>Connexion financière à venir</small>
+          </article>
+
+          <article class="stat-card">
+            <span>En attente</span>
+            <strong>—</strong>
+            <small>Paiements clients</small>
+          </article>
+
+          <article class="stat-card">
+            <span>Payé</span>
+            <strong>—</strong>
+            <small>Paiements confirmés</small>
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           STATISTIQUES
+      ================================================== -->
+
+      <section id="statistics"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Statistiques</h2>
+            <p>
+              Analyse complète de votre activité.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            ▥
+          </div>
+
+          <h3>
+            Statistiques disponibles après activité
+          </h3>
+
+          <p>
+            Missions, chiffre d'affaires, performance,
+            satisfaction client et réseau d'inspecteurs
+            seront analysés ici.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           PARAMETRES
+      ================================================== -->
+
+      <section id="settings"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Paramètres</h2>
+            <p>
+              Configuration de MonExpertAutomobile OS.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+          <article class="panel">
+
+            <h3>
+              Entreprise
+            </h3>
+
+            <p>
+              Informations de votre entreprise,
+              identité visuelle et coordonnées.
+            </p>
+
+            <button class="secondary-button">
+              Configurer
+            </button>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>
+              Utilisateurs
+            </h3>
+
+            <p>
+              Administrateurs, employés et permissions.
+            </p>
+
+            <button class="secondary-button">
+              Gérer les utilisateurs
+            </button>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>
+              Sécurité
+            </h3>
+
+            <p>
+              Accès, authentification et protection des données.
+            </p>
+
+            <button class="secondary-button">
+              Sécurité
+            </button>
+
+          </article>
+
+
+          <article class="panel">
+
+            <h3>
+              Intégrations
+            </h3>
+
+            <p>
+              Services externes, API et partenaires.
+            </p>
+
+            <button class="secondary-button">
+              Gérer les intégrations
+            </button>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           NOTIFICATIONS
+      ================================================== -->
+
+      <section id="notifications"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Notifications</h2>
+            <p>
+              Centre de notifications.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="empty-state">
+
+          <div class="empty-icon">
+            🔔
+          </div>
+
+          <h3>
+            Aucune notification
+          </h3>
+
+          <p>
+            Les événements importants apparaîtront ici.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           SUPPORT
+      ================================================== -->
+
+      <section id="support"
+               class="page-section hidden">
+
+        <div class="page-header">
+
+          <div>
+            <h2>Support</h2>
+            <p>
+              Assistance MonExpertAutomobile.
+            </p>
+          </div>
+
+        </div>
+
+        <article class="panel">
+
+          <h3>
+            Besoin d'aide ?
+          </h3>
+
+          <p>
+            Le centre de support permettra de gérer
+            les demandes et incidents de la plateforme.
+          </p>
+
+          <button class="primary-button">
+            Contacter le support
+          </button>
+
+        </article>
+
+      </section>
+
+
+      <!-- =================================================
+           FOOTER
+      ================================================== -->
+
+      <footer id="footer">
+
+        <span>
+          © MonExpertAutomobile
+        </span>
+
+        <span>
+          Plateforme professionnelle d'inspection automobile
+        </span>
+
+        <span>
+          Version 1.0
+        </span>
+
+      </footer>
+
+
+    </main>
 
   </div>
 
 
-  <!-- JavaScript principal -->
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
 
   <script src="JS/app.js"></script>
 
