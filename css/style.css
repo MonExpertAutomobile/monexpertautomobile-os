@@ -1364,6 +1364,14 @@ tr:last-child td {
 
   .stat-card strong {
 
+     @media (max-width: 800px) {
+
+  .premium-card,
+  .user-card {
+    display: none !important;
+  }
+
+}
     font-size: 21px;
 
   }
