@@ -1156,6 +1156,10 @@ tr:last-child td {
     display: none;
 
   }
+   .premium-card,
+.user-card {
+  display: none;
+}
 
 
   #mainNavigation {
