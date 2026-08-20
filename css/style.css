@@ -1162,25 +1162,30 @@ tr:last-child td {
 }
 
 
-  #mainNavigation {
+  .main-navigation {
 
-    height: 68px;
+  height: 68px;
 
-    padding: 7px;
+  padding: 7px;
 
-    display: grid;
+  display: flex;
 
-    grid-template-columns:
-      repeat(5, 1fr);
+  flex-direction: row;
 
-    gap: 4px;
+  gap: 6px;
 
-    overflow: hidden;
+  overflow-x: auto;
 
-  }
+  overflow-y: hidden;
+
+  white-space: nowrap;
+
+  -webkit-overflow-scrolling: touch;
+
+}
 
 
-  #mainNavigation button {
+  .main-navigation button {
 
     padding: 7px 3px;
 
