@@ -1171,6 +1171,7 @@ tr:last-child td {
   display: flex;
 
   flex-direction: row;
+     flex-wrap: nowrap;
 
   gap: 6px;
 
